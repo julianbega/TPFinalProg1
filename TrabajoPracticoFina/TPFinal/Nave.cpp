@@ -14,7 +14,6 @@ void Nave::dibujar(){
 	cout<<" "<<(char)40<<(char)206<<(char)41;//207
 	gotoxy(_x,_y+2);
 	cout<<(char)30<<(char)190<<" "<<(char)212<<(char)30;
-
 }
 void Nave::borrar(){
 	gotoxy(_x,_y);  cout<<"     ";
@@ -45,10 +44,17 @@ void Nave::morir(){
 	}
 }
 
-void Nave::corazones(){
+void Nave::setCorazones(int newCor){
+	_corazones = newCor;
 }
 
 void Nave::corazonesCero(){
+	if (getCorazones() == 0){
+		if(getVidas() >= 1){
+			morir();
+		}
+	}
+
 }
 void Nave::dibujarCorazones(){
 }
@@ -64,16 +70,18 @@ int Nave::getX(){
 int Nave::getY(){
 	return _y;
 }
-void Nave::mover(){
 
-}
 void Nave::setX(int x){
 	_x = x;
 }
 void Nave::setY(int y){
 	_y = y;
 }
-void Nave::vidas(){
+void Nave::setVidas(int newVida){
+	_vidas = newVida;
 }
 void Nave::vidasCero(){
+	if(getVidas() <= 0){
+		
+	}
 }

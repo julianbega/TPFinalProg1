@@ -17,7 +17,7 @@ public:
 	Nave(int x, int y, int vidas, int corazones);
 	~Nave();
 	void borrar();
-	void corazones();
+	void setCorazones(int newCor);
 	void corazonesCero();
 	void dibujar();
 	void dibujarCorazones();
@@ -26,10 +26,9 @@ public:
 	int getX();
 	int getY();
 	void morir();
-	void mover();
 	void setX(int x);
 	void setY(int y);
-	void vidas();
+	void setVidas(int newVida);
 	void vidasCero();
 
 };

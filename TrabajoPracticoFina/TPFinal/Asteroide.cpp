@@ -1,11 +1,15 @@
 #include "Asteroide.h"
 
+int Asteroide::_cantAsteroides=0;
+
 Asteroide::Asteroide(int x, int y){
 	_x = x;
 	_y = y;
 	_aux = 0;
+	_cantAsteroides++;
 }
 Asteroide::~Asteroide(){
+	_cantAsteroides--;
 }
 void Asteroide::mover(){
 	_aux++;
@@ -37,8 +41,26 @@ int Asteroide::getY(){
 	return _y;
 }
 void Asteroide::colision(Nave* nave){
-	nave->getX();
-	nave->getY();
+	if (getY() == nave->getY() &&
+		getX() == nave->getX()+2 ){
+			nave->setCorazones(nave->getCorazones()-1);
+			setX(rand() % MAX_COL-1 + MIN_COL+1);
+			setY(3);
+		}
+	else if(getY() == nave->getY()+1 &&
+			getX() <= nave->getX()+3&&
+			getX() >= nave->getX()+1){
+				nave->setCorazones(nave->getCorazones()-1);
+				setX(rand() % MAX_COL-1 + MIN_COL+1);
+				setY(3);
+	}else if(getY() == nave->getY()+2 &&
+			getX() <= nave->getX()+4 &&
+			getX() >= nave->getX()){
+				nave->setCorazones(nave->getCorazones()-1);
+				setX(rand() % MAX_COL-1 + MIN_COL+1);
+				setY(3);
+	}
+		
 }
 void Asteroide::setX(int x){
 	_x = x;

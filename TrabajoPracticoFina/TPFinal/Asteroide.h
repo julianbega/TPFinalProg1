@@ -10,7 +10,7 @@
 using namespace std;
 
 class Asteroide{
-	int _cantAsteroides;
+	static int _cantAsteroides;
 	int _x;
 	int _y;
 	int _aux;
@@ -20,11 +20,13 @@ public:
 	void mover();
 	void borrar();
 	void dibujar();
-	int getCantAsteroides();
+	static int getCantAsteroides();
 	int getX();
 	int getY();
 	void setX(int x);
 	void setY(int y);
 	void colision(Nave* nave);
 };
+
+
 #endif
