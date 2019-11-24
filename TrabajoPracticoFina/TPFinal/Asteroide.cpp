@@ -13,7 +13,7 @@ Asteroide::~Asteroide(){
 }
 void Asteroide::mover(){
 	_aux++;
-	if(_aux > 200){
+	if(_aux > 100){
 		gotoxy(_x,_y);
 		borrar();
 		if(getX()>=MIN_FIL){
@@ -22,6 +22,7 @@ void Asteroide::mover(){
 
 		_aux = 0;
 	}
+	
 }
 void Asteroide::borrar(){
 	gotoxy(_x,_y);  
@@ -44,20 +45,20 @@ void Asteroide::colision(Nave* nave){
 	if (getY() == nave->getY() &&
 		getX() == nave->getX()+2 ){
 			nave->setCorazones(nave->getCorazones()-1);
-			setX(rand() % MAX_COL-1 + MIN_COL+1);
+			setX(rand() % MAX_X + MIN_X);
 			setY(3);
 		}
 	else if(getY() == nave->getY()+1 &&
 			getX() <= nave->getX()+3&&
 			getX() >= nave->getX()+1){
 				nave->setCorazones(nave->getCorazones()-1);
-				setX(rand() % MAX_COL-1 + MIN_COL+1);
+				setX(rand() % MAX_X + MIN_X);
 				setY(3);
 	}else if(getY() == nave->getY()+2 &&
 			getX() <= nave->getX()+4 &&
 			getX() >= nave->getX()){
 				nave->setCorazones(nave->getCorazones()-1);
-				setX(rand() % MAX_COL-1 + MIN_COL+1);
+				setX(rand() % MAX_X + MIN_X);
 				setY(3);
 	}
 		

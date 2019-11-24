@@ -6,7 +6,19 @@ Juego::Juego(){
 }
 
 Juego::~Juego(){
-
+	for (int i = 0; i < 3; i++){
+		if (_vecAst[i] != NULL){
+			delete _vecAst[i];
+		}
+	}
+	if (_nave != NULL){
+			delete _nave;
+	}
+	for (int i = 0; i < TOPEB; i++){
+		if (_vecB[i] != NULL){
+			delete _vecB[i];
+		}
+	}
 }
 
 void Juego::init(){
@@ -20,6 +32,9 @@ void Juego::init(){
 	_vecAst[0]=new Asteroide(10, 4);
 	_vecAst[1]=new Asteroide(4, 8);
 	_vecAst[2]=new Asteroide(15, 10);
+	for (int i = 0; i < TOPEB; i++){
+		_vecB[i] = NULL;
+	}
 	srand(time(NULL));
 }
 
@@ -91,7 +106,7 @@ void Juego::update(){
 	for (int i = 0; i < 3; i++){
 		_vecAst[i]->mover();
 		if(_vecAst[i]->getY()>=MAX_FIL){
-			_vecAst[i]->setX(rand() % MAX_COL-1 + MIN_COL+1);
+			_vecAst[i]->setX(rand() % MAX_X + MIN_X);
 			_vecAst[i]->setY(3);
 		}
 	}
@@ -100,10 +115,14 @@ void Juego::update(){
 	}
 	_nave->vidasCero();
 	_nave->corazonesCero();
+	if (_nave->getVidas() <= 0 && _nave->getCorazones() <= 0){
+	 _gameOver = true;
+	}
 	draw();
 }
 
 void Juego::draw(){
+
 	if(_nave != NULL){
 		_nave->dibujar();
 	}	
@@ -114,14 +133,16 @@ void Juego::draw(){
 }
 
 void Juego::result(){
-
+	gotoxy(MAX_X/2,MAX_Y/2);
+	cout<<"GAME OVER";
 }
 
 void Juego::display(){
+
 	gotoxy(2,1);
 	cout<<"Vidas "<< _nave->getVidas() <<	 "  Salud " << _nave->getCorazones() ;
 	if(_nave->getCorazones() == 1) cout << (char)CORAZON;
 	if(_nave->getCorazones() == 2) cout << (char)CORAZON<<(char)CORAZON;
 	if(_nave->getCorazones() == 3) cout << (char)CORAZON<<(char)CORAZON<<(char)CORAZON;
-	 cout << "                        Cantidad de asteroides: " << Asteroide::getCantAsteroides();
+	gotoxy(28,1); cout << "                        Cantidad de asteroides: " << Asteroide::getCantAsteroides();
 }

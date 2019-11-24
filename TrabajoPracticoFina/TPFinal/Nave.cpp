@@ -56,6 +56,9 @@ void Nave::corazonesCero(){
 	}
 
 }
+
+Nave::~Nave(){
+}
 void Nave::dibujarCorazones(){
 }
 int Nave::getCorazones(){
