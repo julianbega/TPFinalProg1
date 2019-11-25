@@ -50,7 +50,7 @@ void Nave::setCorazones(int newCor){
 
 void Nave::corazonesCero(){
 	if (getCorazones() == 0){
-		if(getVidas() >= 1){
+		if(getVidas() >= 2){
 			morir();
 		}
 	}

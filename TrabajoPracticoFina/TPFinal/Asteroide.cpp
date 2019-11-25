@@ -13,7 +13,7 @@ Asteroide::~Asteroide(){
 }
 void Asteroide::mover(){
 	_aux++;
-	if(_aux > 100){
+	if(_aux > 30){
 		gotoxy(_x,_y);
 		borrar();
 		if(getX()>=MIN_FIL){

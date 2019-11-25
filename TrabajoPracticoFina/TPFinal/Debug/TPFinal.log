@@ -1,28 +1,31 @@
-﻿Build started 24/11/2019 20:29:14.
-     1>Project "C:\Users\User\Desktop\TPFinalProg1\TrabajoPracticoFina\TPFinal\TPFinal.vcxproj" on node 2 (build target(s)).
+﻿Compilación iniciada a las 25/11/2019 12:16:53.
+     1>Proyecto "C:\Users\Administrador\Desktop\TPFinalProg1\TrabajoPracticoFina\TPFinal\TPFinal.vcxproj" en el nodo 2 (build destinos).
      1>InitializeBuildStatus:
-         Creating "Debug\TPFinal.unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Se creará "Debug\TPFinal.unsuccessfulbuild" porque se especificó "AlwaysCreate".
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
-         main.cpp
-     1>c:\users\user\desktop\tpfinalprog1\trabajopracticofina\tpfinal\juego.h(11): warning C4005: 'MIN_FIL' : macro redefinition
-                 c:\users\user\desktop\tpfinalprog1\trabajopracticofina\tpfinal\definiciones.h(4) : see previous definition of 'MIN_FIL'
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Asteroide.cpp Juego.cpp
+         Juego.cpp
+     1>c:\users\administrador\desktop\tpfinalprog1\trabajopracticofina\tpfinal\juego.h(11): warning C4005: 'MIN_FIL' : redefinición de macro
+                 c:\users\administrador\desktop\tpfinalprog1\trabajopracticofina\tpfinal\definiciones.h(4) : vea la definición anterior de 'MIN_FIL'
+     1>c:\users\administrador\desktop\tpfinalprog1\trabajopracticofina\tpfinal\juego.cpp(38): warning C4244: 'argumento' : conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+         Asteroide.cpp
+         Generando código...
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\User\Desktop\TPFinalProg1\TrabajoPracticoFina\Debug\TPFinal.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\TPFinal.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\User\Desktop\TPFinalProg1\TrabajoPracticoFina\Debug\TPFinal.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\User\Desktop\TPFinalProg1\TrabajoPracticoFina\Debug\TPFinal.lib" /MACHINE:X86 Debug\libreria.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Administrador\Desktop\TPFinalProg1\TrabajoPracticoFina\Debug\TPFinal.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\TPFinal.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Administrador\Desktop\TPFinalProg1\TrabajoPracticoFina\Debug\TPFinal.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Administrador\Desktop\TPFinalProg1\TrabajoPracticoFina\Debug\TPFinal.lib" /MACHINE:X86 Debug\libreria.obj
          Debug\Asteroide.obj
          Debug\Bala.obj
          Debug\Juego.obj
          Debug\main.obj
          Debug\Nave.obj
-         LINK : C:\Users\User\Desktop\TPFinalProg1\TrabajoPracticoFina\Debug\TPFinal.exe not found or not built by the last incremental link; performing full link
-         TPFinal.vcxproj -> C:\Users\User\Desktop\TPFinalProg1\TrabajoPracticoFina\Debug\TPFinal.exe
+         LINK : no se encontró C:\Users\Administrador\Desktop\TPFinalProg1\TrabajoPracticoFina\Debug\TPFinal.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
+         TPFinal.vcxproj -> C:\Users\Administrador\Desktop\TPFinalProg1\TrabajoPracticoFina\Debug\TPFinal.exe
        Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\User\Desktop\TPFinalProg1\TrabajoPracticoFina\Debug\TPFinal.exe;#1" /manifest Debug\TPFinal.exe.intermediate.manifest
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\Administrador\Desktop\TPFinalProg1\TrabajoPracticoFina\Debug\TPFinal.exe;#1" /manifest Debug\TPFinal.exe.intermediate.manifest
        FinalizeBuildStatus:
-         Deleting file "Debug\TPFinal.unsuccessfulbuild".
-         Touching "Debug\TPFinal.lastbuildstate".
-     1>Done Building Project "C:\Users\User\Desktop\TPFinalProg1\TrabajoPracticoFina\TPFinal\TPFinal.vcxproj" (build target(s)).
+         Se eliminará el archivo "Debug\TPFinal.unsuccessfulbuild".
+         Aplicando tarea Touch a "Debug\TPFinal.lastbuildstate".
+     1>Compilación del proyecto terminada "C:\Users\Administrador\Desktop\TPFinalProg1\TrabajoPracticoFina\TPFinal\TPFinal.vcxproj" (build destinos).
 
-Build succeeded.
+Compilación correcta.
 
-Time Elapsed 00:00:01.35
+Tiempo transcurrido 00:00:01.31

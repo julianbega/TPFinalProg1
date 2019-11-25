@@ -1,8 +1,7 @@
 #include "Juego.h"
 
 Juego::Juego(){
-	_nave=new Nave(38,20,3,3);
-	
+	init();	
 }
 
 Juego::~Juego(){
@@ -29,6 +28,7 @@ void Juego::init(){
 	for (int i = 0; i < 3; i++){
 		_vecAst[i] = NULL;
 	}
+	_nave=new Nave(38,20,3,3);
 	_vecAst[0]=new Asteroide(10, 4);
 	_vecAst[1]=new Asteroide(4, 8);
 	_vecAst[2]=new Asteroide(15, 10);
@@ -49,7 +49,7 @@ void Juego::play(){
 	while (!_gameOver){
 		input();
 		update();
-		
+		draw();
 	}
 	result();
 }
@@ -57,11 +57,11 @@ void Juego::play(){
 
 void Juego::input(){
 	if(_tecla=getKey(false)){
+		_nave->borrar();
 		switch(_tecla){
 		case KEY_UP:
 			if (_nave->getY() > MIN_FIL + 1){
 			gotoxy(_nave->getX(), _nave->getY());
-			_nave->borrar();
 			_nave->setY(_nave->getY() - 1);
 			}
 			break;
@@ -69,7 +69,6 @@ void Juego::input(){
 		case KEY_LEFT:
 			if (_nave->getX() > MIN_COL+1){
 			gotoxy(_nave->getX(), _nave->getY());
-			_nave->borrar();
 			_nave->setX(_nave->getX() - 1);
 			}
 			break;
@@ -77,20 +76,22 @@ void Juego::input(){
 		case KEY_RIGHT:
 			if (_nave->getX() < MAX_COL -5){
 			gotoxy(_nave->getX(), _nave->getY());
-			_nave->borrar();
 			_nave->setX(_nave->getX() + 1);
 			}
 			break;
 
 		case KEY_DOWN:
 			if (_nave->getY() < MAX_FIL-3){
-			gotoxy(_nave->getX(), _nave->getY());
-			_nave->borrar();
-			_nave->setY(_nave->getY() + 1);
+				gotoxy(_nave->getX(), _nave->getY());
+				_nave->setY(_nave->getY() + 1);
 			}
 			break; 
 
 		case KEY_ESC:
+
+			gameOver();
+			break;
+		case FIRE:
 
 			gameOver();
 			break;
@@ -115,10 +116,19 @@ void Juego::update(){
 	}
 	_nave->vidasCero();
 	_nave->corazonesCero();
-	if (_nave->getVidas() <= 0 && _nave->getCorazones() <= 0){
+	if (_nave->getVidas() <= 1 && _nave->getCorazones() <= 0){
+	 _nave->setVidas(0);
 	 _gameOver = true;
+	
 	}
-	draw();
+	
+	
+	if(_gameOver == true){
+	 _nave->borrar();
+	 for (int i = 0; i < 3; i++){
+		 _vecAst[i]->borrar();
+	}
+	}
 }
 
 void Juego::draw(){
