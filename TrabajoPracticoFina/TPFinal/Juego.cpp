@@ -1,7 +1,7 @@
 #include "Juego.h"
 
 Juego::Juego(){
-	init();	
+	
 }
 
 Juego::~Juego(){
@@ -47,15 +47,17 @@ void Juego::play(){
 	marco(MIN_COL, MIN_FIL, MAX_COL, MAX_FIL);
 	hideCursor();
 	while (!_gameOver){
+		draw();
 		input();
 		update();
-		draw();
 	}
 	result();
+	
 }
 
 
 void Juego::input(){
+	bool alreadyFire = false;
 	if(_tecla=getKey(false)){
 		_nave->borrar();
 		switch(_tecla){
@@ -89,11 +91,16 @@ void Juego::input(){
 
 		case KEY_ESC:
 
-			gameOver();
+			_gameOver = !_gameOver;
 			break;
 		case FIRE:
-
-			gameOver();
+			
+			for (int i = 0; i < TOPEB; i++){				
+				if (_vecB[i] == NULL && alreadyFire == false){
+					_vecB[i] = new Bala(_nave->getX()+2,_nave->getY()-1);
+					alreadyFire = true;
+				}
+			}
 			break;
 
 		default:
@@ -105,15 +112,16 @@ void Juego::input(){
 
 void Juego::update(){
 	for (int i = 0; i < 3; i++){
-		_vecAst[i]->mover();
-		if(_vecAst[i]->getY()>=MAX_FIL){
-			_vecAst[i]->setX(rand() % MAX_X + MIN_X);
-			_vecAst[i]->setY(3);
+		if (_vecAst[i] != NULL){
+			_vecAst[i]->mover();
+			if(_vecAst[i]->getY()>=MAX_FIL){
+				_vecAst[i]->setX(rand() % MAX_X + MIN_X);
+				_vecAst[i]->setY(3);
+			}
+			_vecAst[i]->colision(_nave);
 		}
 	}
-	for (int i = 0; i < 3; i++){
-		_vecAst[i]->colision(_nave);
-	}
+
 	_nave->vidasCero();
 	_nave->corazonesCero();
 	if (_nave->getVidas() <= 1 && _nave->getCorazones() <= 0){
@@ -121,7 +129,21 @@ void Juego::update(){
 	 _gameOver = true;
 	
 	}
-	
+
+	for (int i = 0; i < TOPEB; i++){
+		if (_vecB[i] != NULL){
+			_vecB[i]->mover();
+			for (int j = 0; j < 3; j++){
+			_vecB[i]->colision(_vecAst[j]);
+			}
+			if(_vecB[i]->afuera()){
+				delete _vecB[i];
+				_vecB[i] = NULL;			
+			}
+
+		}
+
+	}
 	
 	if(_gameOver == true){
 	 _nave->borrar();
@@ -137,22 +159,43 @@ void Juego::draw(){
 		_nave->dibujar();
 	}	
 	for (int i = 0; i < 3; i++){
+		if(_vecAst[i] != NULL){
 		_vecAst[i]->dibujar();
+		}
+	}
+	for (int i = 0; i < TOPEB; i++){
+		if (_vecB[i] != NULL){
+			_vecB[i]->dibujar();
+		}		
 	}
 	display();
 }
 
 void Juego::result(){
-	gotoxy(MAX_X/2,MAX_Y/2);
+	gotoxy(MAX_X/2-5,MAX_Y/2);
 	cout<<"GAME OVER";
+	display();
+	for (int i = 0; i < 3; i++){
+		if(_vecAst[i] != NULL){
+		_vecAst[i]->borrar();
+		}		
+	}
+	for (int i = 0; i < TOPEB; i++){
+		if (_vecB[i] != NULL){
+			_vecB[i]->borrar();
+		}		
+	}
+	_nave->morir();
+	_nave->borrar();
 }
 
 void Juego::display(){
 
 	gotoxy(2,1);
-	cout<<"Vidas "<< _nave->getVidas() <<	 "  Salud " << _nave->getCorazones() ;
-	if(_nave->getCorazones() == 1) cout << (char)CORAZON;
-	if(_nave->getCorazones() == 2) cout << (char)CORAZON<<(char)CORAZON;
-	if(_nave->getCorazones() == 3) cout << (char)CORAZON<<(char)CORAZON<<(char)CORAZON;
+	cout<<"Vidas "<< _nave->getVidas() <<	 "  Salud "  ;
+	if(_nave->getCorazones() == 0) cout << "        "; 
+	if(_nave->getCorazones() == 1) cout << "<3" << "      ";  
+	if(_nave->getCorazones() == 2) cout << "<3 <3"<< "   ";
+	if(_nave->getCorazones() == 3) cout << "<3 <3 <3";
 	gotoxy(28,1); cout << "                        Cantidad de asteroides: " << Asteroide::getCantAsteroides();
 }

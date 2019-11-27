@@ -13,7 +13,7 @@ void Nave::dibujar(){
 	gotoxy(_x,_y+1);
 	cout<<" "<<(char)40<<(char)206<<(char)41;//207
 	gotoxy(_x,_y+2);
-	cout<<(char)30<<(char)190<<" "<<(char)212<<(char)30;
+	cout<<"#"<<"#"<<" "<<"#"<<"#";
 }
 void Nave::borrar(){
 	gotoxy(_x,_y);  cout<<"     ";
